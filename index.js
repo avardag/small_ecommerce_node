@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const repo = require("./repositories/users");
 
 const app = express();
 const port = 3000;
@@ -21,8 +22,8 @@ app.get("/", (req, res) => {
   `);
 });
 
-app.post("/", (req, res) => {
-  console.log("🚀 ~ app.post ~ req.body", req.body);
+app.post("/", async (req, res) => {
+  const { email, password, passwordConfirmation } = req.body;
 
   res.send(`
   <div>
