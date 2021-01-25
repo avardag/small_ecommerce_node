@@ -57,4 +57,13 @@ module.exports = {
         throw new Error("Invalid password");
       }
     }),
+  checkTitle: check("title")
+    .trim()
+    .isLength({ min: 5, max: 30 })
+    .withMessage("Title should be 5 to 30 chars long"),
+  checkPrice: check("price")
+    .trim()
+    .toFloat()
+    .isFloat({ min: 1 })
+    .withMessage("Enter a number more than 0"),
 };

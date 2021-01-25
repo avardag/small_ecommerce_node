@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cookieSession = require("cookie-session");
 const authRouter = require("./routes/admin/auth");
+const productsRouter = require("./routes/admin/products");
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.use(
 
 //routes
 app.use(authRouter);
+app.use(productsRouter);
 
 //server
 app.listen(port, () => {
