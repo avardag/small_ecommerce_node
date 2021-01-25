@@ -4,18 +4,34 @@ const { getInputErrors } = require("../../helpers");
 module.exports = ({ req, errorsArr }) => {
   return adminLayout({
     content: `
-  <div>
-    <div>Your id is : ${req.session.userId}</div>
-    <form method="POST">
-      <input type="email" name="email" placeholder="email"/>
-      ${getInputErrors(errorsArr, "email")}
-      <input type="password" name="password" placeholder="password"/>
-      ${getInputErrors(errorsArr, "password")}
-      <button>
-        Sign In
-      </button>
-    </form>
-  </div>
+    <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-one-quarter">
+            <form method="POST">
+              <h1 class="title">Sign in</h1>
+              <div class="field">
+                <label class="label">Email</label>
+                <input required class="input" placeholder="Email" name="email" />
+                <p class="help is-danger">${getInputErrors(
+                  errorsArr,
+                  "email"
+                )}</p>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <input required class="input" placeholder="Password" name="password" type="password" />
+                <p class="help is-danger">${getInputErrors(
+                  errorsArr,
+                  "password"
+                )}</p>
+              </div>
+              <button class="button is-primary">Submit</button>
+            </form>
+            <a href="/signup">Need an account? Sign Up</a>
+          </div>
+        </div>
+      </div>
+
   `,
   });
 };

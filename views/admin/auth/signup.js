@@ -4,20 +4,41 @@ const { getInputErrors } = require("../../helpers");
 module.exports = ({ req, errorsArr }) => {
   return adminLayout({
     content: `
-  <div>
-    <div>Your id is : ${req.session.userId}</div>
-    <form method="POST">
-      <input type="email" name="email" placeholder="email"/>
-      ${getInputErrors(errorsArr, "email")}
-      <input type="password" name="password" placeholder="password"/>
-      ${getInputErrors(errorsArr, "password")}
-      <input type="password" name="passwordConfirmation" placeholder="Confirm Password"/>
-      ${getInputErrors(errorsArr, "passwordConfirmation")}
-      <button>
-        Sign Up
-      </button>
-    </form>
-  </div>
+    <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-one-quarter">
+            <form method="POST">
+              <h1 class="title">Sign Up</h1>
+              <div class="field">
+                <label class="label">Email</label>
+                <input required class="input" placeholder="Email" name="email" />
+                <p class="help is-danger">${getInputErrors(
+                  errorsArr,
+                  "email"
+                )}</p>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <input required class="input" placeholder="Password" name="password" type="password" />
+                <p class="help is-danger">${getInputErrors(
+                  errorsArr,
+                  "password"
+                )}</p>
+              </div>
+              <div class="field">
+                <label class="label">Password Confirmation</label>
+                <input required class="input" placeholder="Password Confirmation" name="passwordConfirmation" type="password" />
+                <p class="help is-danger">${getInputErrors(
+                  errorsArr,
+                  "passwordConfirmation"
+                )}</p>
+              </div>
+              <button class="button is-primary">Submit</button>
+            </form>
+            <a href="/signin">Have an account? Sign In</a>
+          </div>
+        </div>
+      </div>
   `,
   });
 };

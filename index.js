@@ -5,6 +5,8 @@ const authRouter = require("./routes/admin/auth");
 
 const app = express();
 const port = 3000;
+//public
+app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
