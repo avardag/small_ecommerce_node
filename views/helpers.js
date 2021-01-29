@@ -1,7 +1,7 @@
 module.exports = {
-  getInputErrors(errorsArr, inputName) {
+  getInputErrors(errorsResultObj, inputName) {
     try {
-      return errorsArr.mapped()[inputName].msg;
+      return errorsResultObj.mapped()[inputName].msg;
     } catch (error) {
       return "";
     }

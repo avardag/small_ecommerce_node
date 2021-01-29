@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require("path");
-const { validationResult } = require("express-validator");
 //multer for multipart forms
 var multer = require("multer");
 
 const productsRepo = require("../../repositories/products");
 const productsNewTemplate = require("../../views/admin/products/newProduct");
 const { checkPrice, checkTitle } = require("../admin/validators");
+const { handleBodyInputErrors } = require("./middlewares");
 const uploadToCloudinary = require("./cloudinaryConfig");
 
 const router = express.Router();
@@ -35,12 +35,8 @@ router.post(
   "/admin/products/new",
   upload.single("image") /*image upload w/ Multer from multipart form */,
   [checkPrice, checkTitle],
+  handleBodyInputErrors(productsNewTemplate),
   async (req, res) => {
-    const errorsArr = validationResult(req);
-
-    if (!errorsArr.isEmpty()) {
-      return res.send(productsNewTemplate({ errorsArr }));
-    }
     try {
       const uploadResult = await uploadToCloudinary(req);
 

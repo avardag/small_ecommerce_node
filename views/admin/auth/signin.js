@@ -1,7 +1,7 @@
 const adminLayout = require("../layout");
 const { getInputErrors } = require("../../helpers");
 
-module.exports = ({ req, errorsArr }) => {
+module.exports = ({ errorsResultObj }) => {
   return adminLayout({
     content: `
     <div class="container">
@@ -13,7 +13,7 @@ module.exports = ({ req, errorsArr }) => {
                 <label class="label">Email</label>
                 <input required class="input" placeholder="Email" name="email" />
                 <p class="help is-danger">${getInputErrors(
-                  errorsArr,
+                  errorsResultObj,
                   "email"
                 )}</p>
               </div>
@@ -21,7 +21,7 @@ module.exports = ({ req, errorsArr }) => {
                 <label class="label">Password</label>
                 <input required class="input" placeholder="Password" name="password" type="password" />
                 <p class="help is-danger">${getInputErrors(
-                  errorsArr,
+                  errorsResultObj,
                   "password"
                 )}</p>
               </div>

@@ -1,7 +1,7 @@
 const layout = require("../layout");
 const { getInputErrors } = require("../../helpers");
 
-module.exports = ({ errorsArr }) => {
+module.exports = ({ errorsResultObj }) => {
   return layout({
     content: `
     <div class="columns is-centered">
@@ -12,13 +12,19 @@ module.exports = ({ errorsArr }) => {
         <div class="field">
           <label class="label">Title</label>
           <input class="input" placeholder="Title" name="title">
-          <p class="help is-danger">${getInputErrors(errorsArr, "title")}</p>
+          <p class="help is-danger">${getInputErrors(
+            errorsResultObj,
+            "title"
+          )}</p>
         </div>
         
         <div class="field">
           <label class="label">Price</label>
           <input class="input" placeholder="Price" name="price">
-          <p class="help is-danger">${getInputErrors(errorsArr, "price")}</p>
+          <p class="help is-danger">${getInputErrors(
+            errorsResultObj,
+            "price"
+          )}</p>
         </div>
         
         <div class="field">
@@ -33,4 +39,4 @@ module.exports = ({ errorsArr }) => {
     `,
   });
 };
-// ${getInputErrors(errorsArr, "image")}
+// ${getInputErrors(errorsResultObj, "image")}
