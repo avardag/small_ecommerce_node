@@ -29,11 +29,8 @@ router.post(
     const newUser = await usersRepo.create({ email, password });
     //store the ID of user inside the cookie
     req.session.userId = newUser.id;
-    res.send(`
-    <div>
-      recieved
-    </div>
-    `);
+
+    return res.redirect("/admin/products");
   }
 );
 router.get("/signout", (req, res) => {
@@ -56,7 +53,7 @@ router.post(
     const existingUser = await usersRepo.getOneBy({ email });
 
     req.session.userId = existingUser.id;
-    res.send("You are signed in");
+    return res.redirect("/admin/products");
   }
 );
 

@@ -7,6 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
   },
+  "nodemonConfig": {
+    "ignore": ["products.json", "users.json"],
+    "delay": "1000"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

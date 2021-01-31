@@ -38,10 +38,41 @@ const uploadToCloudinary = async (req) => {
         if (err) {
           reject(new Error("Couldn't upload"));
         }
-        return resolve(result);
+        return resolve({
+          public_id: result.public_id,
+          secure_url: result.secure_url,
+        });
       });
     }
   });
 };
 
-module.exports = uploadToCloudinary;
+const updateInCloudinary = (public_id, req) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.destroy(public_id, function (error, result) {
+      if (error) {
+        reject("Could not update an image");
+      }
+    });
+    uploadToCloudinary(req)
+      .then((image) => {
+        resolve(image);
+      })
+      .catch((error) => reject(error));
+  });
+};
+const deleteFromCloudinary = (public_id) => {
+  return new Promise((resolve, reject) => {
+    cloudinary.uploader.destroy(public_id, function (error, result) {
+      if (error) {
+        reject("Could not update an image");
+      }
+      resolve(result);
+    });
+  });
+};
+module.exports = {
+  uploadToCloudinary,
+  updateInCloudinary,
+  deleteFromCloudinary,
+};
