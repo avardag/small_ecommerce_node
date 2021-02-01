@@ -8,7 +8,7 @@
     "dev": "nodemon index.js"
   },
   "nodemonConfig": {
-    "ignore": ["products.json", "users.json"],
+    "ignore": ["products.json", "users.json", "carts.json"],
     "delay": "1000"
   },
   "keywords": [],
